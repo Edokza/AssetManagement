@@ -23,7 +23,7 @@ namespace AssetManagement.Api.Controllers
             return Ok(data);
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetAssetsById(int id)
         {
             var data = await _service.GetByIdAsync(id);
@@ -38,7 +38,7 @@ namespace AssetManagement.Api.Controllers
 
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAssets(int id, [FromBody] AssetModel model)
         {
             if (id != model.AssetId)
@@ -50,7 +50,7 @@ namespace AssetManagement.Api.Controllers
             return Ok(model);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAssets(int id)
         {
             await _service.DeleteAsync(id);

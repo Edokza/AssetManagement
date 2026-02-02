@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AssetManagement.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260202230527_InitNewModels")]
-    partial class InitNewModels
+    [Migration("20260202233851_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,10 +33,6 @@ namespace AssetManagement.Api.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AssetId"));
 
                     b.Property<string>("AssetName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AssetTag")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

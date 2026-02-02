@@ -2,7 +2,7 @@
 
 namespace AssetManagement.Api.Services
 {
-    public class AssetService
+    public class AssetService : IAssetService
     {
         private readonly Data.AppDbContext _context;
 

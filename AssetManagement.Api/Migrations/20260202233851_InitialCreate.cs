@@ -30,7 +30,6 @@ namespace AssetManagement.Api.Migrations
                     AssetId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AssetName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AssetTag = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

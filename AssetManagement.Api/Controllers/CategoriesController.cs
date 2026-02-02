@@ -24,7 +24,7 @@ namespace AssetManagement.Api.Controllers
             return Ok(categories);
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetCategory(int id)
         {
             var category = await _service.GetByIdAsync(id);
@@ -44,7 +44,7 @@ namespace AssetManagement.Api.Controllers
             return Ok(category);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryModel model)
         {
             if (id != model.CategoryId)
@@ -55,7 +55,7 @@ namespace AssetManagement.Api.Controllers
             return Ok(model);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             await _service.DeleteAsync(id);
