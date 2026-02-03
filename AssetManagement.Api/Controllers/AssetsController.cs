@@ -30,7 +30,7 @@ namespace AssetManagement.Api.Controllers
                 CategoryName = a.Category.CategoryName
             });
 
-            return Ok(data);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]

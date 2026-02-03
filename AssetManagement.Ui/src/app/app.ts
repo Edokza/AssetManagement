@@ -1,12 +1,24 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink  } from '@angular/router';
+import { MenubarModule } from 'primeng/menubar';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLink, MenubarModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('AssetManagement.Ui');
+  menuItems = [
+    {
+      label: 'Assets',
+      icon: 'pi pi-box',
+      routerLink: '/assets'
+    },
+    {
+      label: 'Categories',
+      icon: 'pi pi-tags',
+      routerLink: '/categories'
+    }
+  ];
 }
