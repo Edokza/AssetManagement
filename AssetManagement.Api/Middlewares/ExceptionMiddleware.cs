@@ -1,4 +1,5 @@
-﻿using Azure.Core.Serialization;
+﻿using AssetManagement.Api.Exceptions;
+using Azure.Core.Serialization;
 using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text.Json;
@@ -25,20 +26,20 @@ namespace AssetManagement.Api.Middlewares
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong: {ex}");
+                _logger.LogError(ex, ex.Message);
 
-                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 context.Response.ContentType = "application/json";
+                int statusCode = ex is AppException appEx? appEx.StatusCode : (int)HttpStatusCode.InternalServerError;
 
                 var response = _env.IsDevelopment() ? new ErrorResponse
                 {
-                    StatusCode = context.Response.StatusCode,
+                    StatusCode = statusCode,
                     Message = ex.Message,
                     Details = ex.StackTrace
                 } : new ErrorResponse
                 {
-                    StatusCode = context.Response.StatusCode,
-                    Message = "Internal Server Error from the custom middleware."
+                    StatusCode = statusCode,
+                    Message = ex is AppException ? ex.Message : "Internal Server Error"
                 };
 
                 var json = JsonSerializer.Serialize(response);

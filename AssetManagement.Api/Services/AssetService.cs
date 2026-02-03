@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AssetManagement.Api.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace AssetManagement.Api.Services
 {
@@ -18,7 +19,14 @@ namespace AssetManagement.Api.Services
 
         public async Task<Models.AssetModel?> GetByIdAsync(int id)
         {
-            return await _context.Assets.Include(x => x.Category).FirstOrDefaultAsync(x => x.AssetId == id);
+            var Asset = await _context.Assets.Include(x => x.Category).FirstOrDefaultAsync(x => x.AssetId == id);
+
+            if(Asset == null)
+            {
+                throw new NotFoundException($"Asset with ID {id} not found.");
+            }
+
+            return Asset;
         }
 
         public async Task<Models.AssetModel> CreateAsync(Models.AssetModel asset)
@@ -39,7 +47,7 @@ namespace AssetManagement.Api.Services
             var asset = await _context.Assets.FindAsync(id);
 
             if (asset == null) {
-                return;
+                throw new NotFoundException($"Asset with ID {id} not found.");
             }
 
             _context.Assets.Remove(asset);
