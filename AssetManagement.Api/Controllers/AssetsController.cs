@@ -26,6 +26,7 @@ namespace AssetManagement.Api.Controllers
             {
                 AssetId = a.AssetId,
                 AssetName = a.AssetName,
+                SerialNumber = a.SerialNumber,
                 CategoryName = a.Category.CategoryName
             });
 
@@ -46,7 +47,8 @@ namespace AssetManagement.Api.Controllers
             {
                 AssetId = data.AssetId,
                 AssetName = data.AssetName,
-                CategoryName = data.Category.CategoryName
+                SerialNumber = data.SerialNumber,
+                CategoryName = data.Category.CategoryName,
             };
 
             return Ok(result);
@@ -58,6 +60,7 @@ namespace AssetManagement.Api.Controllers
             var asset = new AssetModel
             {
                 AssetName = model.AssetName,
+                SerialNumber = model.SerialNumber,
                 CategoryId = model.CategoryId
             };
 

@@ -10,6 +10,8 @@ namespace AssetManagement.Api.Models
         public int AssetId { get; set; }
         [Required]
         public string AssetName { get; set; } = null!;
+        [StringLength(50)]
+        public string? SerialNumber { get; set; }
         // Foreign Key
         public int CategoryId { get; set; }
         // Navigation Property

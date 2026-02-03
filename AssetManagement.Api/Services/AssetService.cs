@@ -1,4 +1,5 @@
 ﻿using AssetManagement.Api.Exceptions;
+using AssetManagement.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace AssetManagement.Api.Services
@@ -29,14 +30,21 @@ namespace AssetManagement.Api.Services
             return Asset;
         }
 
-        public async Task<Models.AssetModel> CreateAsync(Models.AssetModel asset)
+        public async Task<AssetModel> CreateAsync(AssetModel asset)
         {
+            if (!await _context.Categories.AnyAsync(x => x.CategoryId == asset.CategoryId))
+                throw new BadRequestException("Invalid CategoryId");
+
+            if (await _context.Assets.AnyAsync(x => x.AssetName == asset.AssetName))
+                throw new BadRequestException("Asset name already exists");
+
+
             _context.Assets.Add(asset);
             await _context.SaveChangesAsync();
             return asset;
         }
 
-        public async Task UpdateAsync(Models.AssetModel asset)
+        public async Task UpdateAsync(AssetModel asset)
         {
             _context.Assets.Update(asset);
             await _context.SaveChangesAsync();

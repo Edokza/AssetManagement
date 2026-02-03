@@ -1,7 +1,5 @@
 ﻿using AssetManagement.Api.Exceptions;
-using Azure.Core.Serialization;
 using System.Net;
-using System.Runtime.Serialization.Json;
 using System.Text.Json;
 
 namespace AssetManagement.Api.Middlewares
@@ -30,6 +28,7 @@ namespace AssetManagement.Api.Middlewares
 
                 context.Response.ContentType = "application/json";
                 int statusCode = ex is AppException appEx? appEx.StatusCode : (int)HttpStatusCode.InternalServerError;
+                context.Response.StatusCode = statusCode;
 
                 var response = _env.IsDevelopment() ? new ErrorResponse
                 {
