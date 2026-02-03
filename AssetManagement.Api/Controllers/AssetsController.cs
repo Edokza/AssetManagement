@@ -88,7 +88,7 @@ namespace AssetManagement.Api.Controllers
                 return NotFound();
 
             await _AssetService.DeleteAsync(id);
-            return Ok();
+            return NoContent();
 
         }
     }

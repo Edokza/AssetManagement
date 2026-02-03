@@ -92,7 +92,7 @@ namespace AssetManagement.Api.Controllers
 
             await _CategoryService.DeleteAsync(id);
 
-            return Ok();
+            return NoContent();
         }
     }
 }
