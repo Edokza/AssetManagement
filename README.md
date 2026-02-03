@@ -24,23 +24,20 @@ A simple web-based Asset Management System for managing corporate assets such as
 ```
 AssetManagement/
 │
-├── backend/
-│   ├── AssetManagement.API
+├── AssetManagement.API
 │   │   ├── Controllers
 │   │   ├── Models
 │   │   ├── Data
 │   │   ├── Services
 │   │   ├── Middleware
 │   │   └── Program.cs
-│
-└── frontend/
-    ├── asset-management-ui
-    │   ├── src/app
-    │   │   ├── components
-    │   │   ├── services
-    │   │   ├── models
-    │   │   └── pages
-    │   └── environments
+├── asset-management-ui
+├── src/app
+│   ├── components
+│   ├── services
+│   ├── models
+│   └── pages
+└── environments
 ```
 ```
 ## ⚙️ Prerequisites
