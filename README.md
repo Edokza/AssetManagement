@@ -1,98 +1,204 @@
-# Asset Management System
+# 📦 Asset Management System
 
-A simple web-based Asset Management System for managing corporate assets such as laptops, monitors, and headphones. Users can view, add, edit, and delete assets efficiently through a web interface.
----
+A web-based Asset Management System for managing corporate assets.\
+Built with **.NET + Angular**.
 
-## 🛠️ Tech Stack
+------------------------------------------------------------------------
+
+## 🚀 Features
+
+### Backend (.NET + EF Core)
+
+-   CRUD Assets
+-   Category Management
+-   RESTful API
+-   EF Core Migrations
+-   Validation
+-   Global Error Handling
+
+### Frontend (Angular + PrimeNG)
+
+-   Data Table
+-   Asset Form
+-   Category Dropdown
+-   Reactive Forms
+-   Toast Notification
+
+------------------------------------------------------------------------
+
+## 🛠 Tech Stack
 
 ### Backend
-- .NET 8
-- ASP.NET Core Web API
-- Entity Framework Core
-- SQL Server / LocalDB
+
+-   .NET 8+
+-   ASP.NET Core Web API
+-   Entity Framework Core
+-   SQL Server
 
 ### Frontend
-- Angular 20
-- PrimeNG
-- TypeScript
-- RxJS
 
----
+-   Angular 20
+-   PrimeNG
+-   TypeScript
 
-## 📂 Project Structure
+------------------------------------------------------------------------
 
+## 📋 Prerequisites
+
+Before running this project, make sure you have installed:
+
+### ✅ Required Software
+
+  Software      Version
+  ------------- -------------------
+  Git           Latest
+  .NET SDK      8+
+  Node.js       18+
+  Angular CLI   Latest
+  SQL Server    Express / LocalDB
+
+------------------------------------------------------------------------
+
+## 🔍 Check Versions
+
+``` bash
+git --version
+dotnet --version
+node --version
+ng version
 ```
-AssetManagement/
-│
-├── backend/
-│   ├── AssetManagement.API
-│   │   ├── Controllers
-│   │   ├── Models
-│   │   ├── Data
-│   │   ├── Services
-│   │   ├── Middleware
-│   │   └── Program.cs
-│
-└── frontend/
-    ├── asset-management-ui
-    │   ├── src/app
-    │   │   ├── components
-    │   │   ├── services
-    │   │   ├── models
-    │   │   └── pages
-    │   └── environments
-```
-```
-## ⚙️ Prerequisites
 
-- .NET SDK 8+
-- Node.js 18+
-- Angular CLI
-- SQL Server / LocalDB
-- Visual Studio / VS Code
+------------------------------------------------------------------------
+
+## 📥 Clone Repository
+
+``` bash
+git clone https://github.com/Edokza/AssetManagement.git
+cd AssetManagement
 ```
----
 
-## 🚀 Backend Setup
+------------------------------------------------------------------------
 
-```bash
+## ⚙️ Backend Setup (.NET API)
+
+### 1. Go to Backend Folder
+
+``` bash
 cd AssetManagement.API
+```
+
+------------------------------------------------------------------------
+
+### 2. Install EF Tool (If Not Installed)
+
+``` bash
+dotnet tool install --global dotnet-ef
+```
+
+------------------------------------------------------------------------
+
+### 3. Create Database
+
+``` bash
 dotnet ef database update
+```
+
+------------------------------------------------------------------------
+
+### 4. Run Backend
+
+``` bash
 dotnet run
 ```
 
----
+Backend will run at:
 
-## 🌐 Frontend Setup
+    https://localhost:7078
 
-```bash
-cd AssetManagement.Ui
+------------------------------------------------------------------------
+
+## 💻 Frontend Setup (Angular)
+
+### 1. Go to Frontend Folder
+
+``` bash
+cd frontend/AssetManagement.Ui
+```
+
+------------------------------------------------------------------------
+
+### 2. Install Dependencies
+
+``` bash
 npm install
+```
+
+------------------------------------------------------------------------
+
+### 3. Run Frontend
+
+``` bash
 ng serve
 ```
 
----
+Open browser at:
+
+    http://localhost:4200
+
+------------------------------------------------------------------------
+
+## 🧪 How to Use
+
+1.  Run Backend using `dotnet run`
+2.  Run Frontend using `ng serve`
+3.  Open `localhost:4200`
+4.  Add / Edit / Delete Assets
+5.  Check data in SQL Server
+
+------------------------------------------------------------------------
 
 ## 🔗 API Endpoints
 
 ### Assets
-- GET /api/assets
-- GET /api/assets/{id}
-- POST /api/assets
-- PUT /api/assets/{id}
-- DELETE /api/assets/{id}
+
+  Method   Endpoint
+  -------- ------------------
+  GET      /api/assets
+  POST     /api/assets
+  PUT      /api/assets/{id}
+  DELETE   /api/assets/{id}
 
 ### Categories
-- GET /api/categories
 
----
+  Method   Endpoint
+  -------- -----------------
+  GET      /api/categories
 
-## 👨‍💻 Author
+------------------------------------------------------------------------
 
-Developed by Edokza
+## ⚠️ Troubleshooting
 
----
+### ❌ Cannot Connect to Database
+
+-   Check Connection String
+-   Make sure SQL Server is running
+-   Verify Server Name
+
+### ❌ npm Install Error
+
+``` bash
+npm cache clean --force
+rm -rf node_modules
+npm install
+```
+------------------------------------------------------------------------
+
+## 👤 Author
+
+Edokza
+
+------------------------------------------------------------------------
 
 ## 📄 License
 
-Educational and technical assessment purposes.
+For Educational Purpose Only
