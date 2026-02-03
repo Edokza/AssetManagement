@@ -43,9 +43,6 @@ AssetManagement/
     │   └── environments
 ```
 ```
-
----
-
 ## ⚙️ Prerequisites
 
 - .NET SDK 8+
@@ -53,7 +50,7 @@ AssetManagement/
 - Angular CLI
 - SQL Server / LocalDB
 - Visual Studio / VS Code
-
+```
 ---
 
 ## 🚀 Backend Setup
