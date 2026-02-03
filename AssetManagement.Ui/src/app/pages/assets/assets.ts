@@ -110,11 +110,20 @@ export class AssetComponent implements OnInit{
 
 
   save() {
-  if (this.assetForm.invalid) return;
+    if (this.assetForm.invalid) {
 
-  const form = this.assetForm.value;
+    this.messageService.add({
+      severity: 'warn',
+      summary: 'Warning',
+      detail: 'Please fill all fields'
+    });
 
-  const data: any = {
+    return;
+  }
+
+    const form = this.assetForm.value;
+
+    const data: any = {
     assetName: form.assetName,
     serialNumber: form.serialNumber,
     categoryId: form.categoryId

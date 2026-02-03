@@ -15,10 +15,10 @@ export class App {
       icon: 'pi pi-box',
       routerLink: '/assets'
     },
-    {
-      label: 'Categories',
-      icon: 'pi pi-tags',
-      routerLink: '/categories'
-    }
+    // {
+    //   label: 'Categories',
+    //   icon: 'pi pi-tags',
+    //   routerLink: '/categories'
+    // }
   ];
 }
