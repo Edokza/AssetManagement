@@ -1,13 +1,9 @@
 # ========================
-# Build Results
+# .NET / Visual Studio
 # ========================
 bin/
 obj/
 out/
-
-# ========================
-# Visual Studio
-# ========================
 .vs/
 *.user
 *.suo
@@ -15,36 +11,58 @@ out/
 *.log
 
 # ========================
-# VS Code
+# Rider / VSCode
 # ========================
 .vscode/
+.idea/
 
 # ========================
-# OS Files
+# OS
 # ========================
 .DS_Store
 Thumbs.db
 
 # ========================
-# Environment
+# Environment / Secrets
 # ========================
 .env
 appsettings.Development.json
 appsettings.Local.json
 
 # ========================
-# Publish
+# Build / Publish
 # ========================
 publish/
 wwwroot/lib/
 
 # ========================
-# Packages
+# NuGet
 # ========================
 packages/
+
+# ========================
+# Angular / Node
+# ========================
+node_modules/
+dist/
+.angular/
+.cache/
+
+# ========================
+# Angular Logs
+# ========================
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ========================
+# Test / Coverage
+# ========================
+coverage/
 
 # ========================
 # Others
 # ========================
 *.tmp
 *.bak
+*.swp
