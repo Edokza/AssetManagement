@@ -27,6 +27,7 @@ namespace AssetManagement.Api.Controllers
                 AssetId = a.AssetId,
                 AssetName = a.AssetName,
                 SerialNumber = a.SerialNumber,
+                CategoryId = a.CategoryId,
                 CategoryName = a.Category.CategoryName
             });
 
@@ -48,6 +49,7 @@ namespace AssetManagement.Api.Controllers
                 AssetId = data.AssetId,
                 AssetName = data.AssetName,
                 SerialNumber = data.SerialNumber,
+                CategoryId = data.CategoryId,
                 CategoryName = data.Category.CategoryName,
             };
 

@@ -1,9 +1,9 @@
 import { Category } from './category.model';
 
 export interface Asset {
-  assetID: number;
+  assetId: number;
   assetName: string;
   serialNumber?: string;
-  categoryID: number;
-  category?: Category;
+  categoryId: number;
+  category: Category;
 }

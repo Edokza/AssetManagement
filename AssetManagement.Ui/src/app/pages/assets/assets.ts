@@ -7,7 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { Select } from 'primeng/select'; 
+import { Select } from 'primeng/select';
 
 import { AssetService } from '../../services/asset.service';
 import { CategoryService } from '../../services/category.service';
@@ -44,8 +44,9 @@ export class AssetComponent implements OnInit{
     this.assetForm = this.fb.group({
       assetName: ['', Validators.required],
       categoryId: ['', Validators.required],
-      description: ['']
+      serialNumber: ['']
     });
+
 
   }
 
@@ -83,32 +84,59 @@ export class AssetComponent implements OnInit{
     this.displayDialog = true;
   }
 
-  edit(asset: any) {
-    this.assetForm.patchValue(asset);
-    this.selectedId = asset.id;
-    this.isEdit = true;
-    this.displayDialog = true;
-  }
+  edit(id: number) {
+
+  this.assetService.getAssetById(id).subscribe({
+    next: (data) => {
+
+      console.log('EDIT DATA =>', data); // debug
+
+      this.assetForm.patchValue({
+        assetName: data.assetName,
+        categoryId: data.categoryId,   // 👈 ระวังตรงนี้
+        serialNumber: data.serialNumber
+      });
+
+    },
+    error: (err) => {
+      console.error(err);
+    }
+  });
+
+  this.selectedId = id;
+  this.isEdit = true;
+  this.displayDialog = true;
+}
+
 
   save() {
-    if (this.assetForm.invalid) return;
+  if (this.assetForm.invalid) return;
 
-    const data = this.assetForm.value;
+  const form = this.assetForm.value;
 
-    if (this.isEdit && this.selectedId) {
-      this.assetService.updateAsset(this.selectedId, data).subscribe(() => {
-        this.success('Updated');
-      });
-    } else {
-      this.assetService.createAsset(data).subscribe(() => {
-        this.success('Created');
-      });
-    }
+  const data: any = {
+    assetName: form.assetName,
+    serialNumber: form.serialNumber,
+    categoryId: form.categoryId
+  };
+
+  if (this.isEdit && this.selectedId) {
+
+    console.log(this.selectedId, data);
+    this.assetService.updateAsset(this.selectedId, data).subscribe(() => {
+      this.success('Updated');
+    });
+  } else {
+    this.assetService.createAsset(data).subscribe(() => {
+      this.success('Created');
+    });
   }
+}
+
 
   delete(id: number) {
     if (!confirm('Delete this asset?')) return;
-
+    console.log(id);
     this.assetService.deleteAsset(id).subscribe(() => {
       this.success('Deleted');
     });

@@ -22,6 +22,7 @@ namespace AssetManagement.Api.DTOs
     {
         public int AssetId { get; set; }
         public string AssetName { get; set; }
+        public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public string? SerialNumber { get; set; }
     }

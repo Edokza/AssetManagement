@@ -22,15 +22,16 @@ export class AssetService {
         return this.http.get<Asset>(`${this.apiUrl}/${id}`);
     }
 
-    //Create Asset
-    createAsset(asset: Asset): Observable<Asset> {
-        return this.http.post<Asset>(this.apiUrl, asset);
+    createAsset(asset: Asset) {
+        return this.http.post(this.apiUrl, asset);
     }
 
-    //Update Asset
-    updateAsset(id: number, asset: Asset): Observable<Asset> {
-        return this.http.put<Asset>(`${this.apiUrl}/${id}`, asset);
+    updateAsset(id: number, asset: Asset) {
+        asset.assetId = id;
+        console.log('Updating asset with ID:', id, 'Data:', asset);
+        return this.http.put(`${this.apiUrl}/${id}`, asset);
     }
+
 
     //Delete Asset
     deleteAsset(id: number): Observable<void> {
