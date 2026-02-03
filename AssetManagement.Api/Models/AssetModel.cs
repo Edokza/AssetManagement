@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace AssetManagement.Api.Models
 {
@@ -13,6 +14,7 @@ namespace AssetManagement.Api.Models
         public int CategoryId { get; set; }
         // Navigation Property
         [ForeignKey("CategoryId")]
+        [JsonIgnore]
         public CategoryModel? Category { get; set; }
     }
 }

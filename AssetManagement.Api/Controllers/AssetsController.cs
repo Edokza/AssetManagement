@@ -1,4 +1,5 @@
-﻿using AssetManagement.Api.Models;
+﻿using AssetManagement.Api.DTOs;
+using AssetManagement.Api.Models;
 using AssetManagement.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,51 +10,84 @@ namespace AssetManagement.Api.Controllers
     public class AssetsController : Controller
     {
 
-        private readonly IAssetService _service;
+        private readonly IAssetService _AssetService;
 
-        public AssetsController(IAssetService service)
+        public AssetsController(IAssetService AssetService)
         {
-            _service = service;
+            _AssetService = AssetService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllAssets()
         {
-            var data = await _service.GetAllAsync();
+            var data = await _AssetService.GetAllAsync();
+
+            var result = data.Select(a => new AssetReadDto
+            {
+                AssetId = a.AssetId,
+                AssetName = a.AssetName,
+                CategoryName = a.Category.CategoryName
+            });
+
             return Ok(data);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAssetsById(int id)
         {
-            var data = await _service.GetByIdAsync(id);
-            return Ok(data);
+            var data = await _AssetService.GetByIdAsync(id);
+
+            if(data == null)
+            {
+                return NotFound();
+            }
+
+            var result = new AssetReadDto
+            {
+                AssetId = data.AssetId,
+                AssetName = data.AssetName,
+                CategoryName = data.Category.CategoryName
+            };
+
+            return Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAssets([FromBody] AssetModel model)
+        public async Task<IActionResult> CreateAssets(AssetCreateDto model)
         {
-            var data = await _service.CreateAsync(model);
+            var asset = new AssetModel
+            {
+                AssetName = model.AssetName,
+                CategoryId = model.CategoryId
+            };
+
+
+            var data = await _AssetService.CreateAsync(asset);
             return Ok(data);
 
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAssets(int id, [FromBody] AssetModel model)
+        public async Task<IActionResult> UpdateAssets(int id, AssetModel model)
         {
             if (id != model.AssetId)
             {
                 return BadRequest();
             }
 
-            await _service.UpdateAsync(model);
+            await _AssetService.UpdateAsync(model);
             return Ok(model);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAssets(int id)
         {
-            await _service.DeleteAsync(id);
+            var Asset = await _AssetService.GetByIdAsync(id);
+
+            if (Asset == null)
+                return NotFound();
+
+            await _AssetService.DeleteAsync(id);
             return Ok();
 
         }
