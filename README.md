@@ -100,6 +100,7 @@ dotnet tool install --global dotnet-ef
 ### 3. Create Database
 
 ``` bash
+dotnet restore
 dotnet ef migrations add SeedCategory
 dotnet ef database update
 ```
